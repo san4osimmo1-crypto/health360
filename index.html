@@ -46,6 +46,10 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Прячем ползунок прокрутки для мобильных каруселей */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .glass { backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); }
         .neo-glow { box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); }
@@ -135,104 +139,122 @@
     </div>
 </section>
 
-<section class="py-24 bg-surface-container/20 relative overflow-hidden border-t border-white/5" id="how-it-works">
+<section class="py-16 md:py-24 bg-surface-container/20 relative overflow-hidden border-t border-white/5" id="how-it-works">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-20 space-y-4">
+    <div class="max-w-7xl mx-auto px-0 md:px-6 relative z-10">
+        <div class="text-center mb-12 md:mb-20 space-y-4 px-6 md:px-0">
             <h2 class="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-white font-display">
                 Почему медицина стандартов <span class="text-slate-500 line-through">устарела</span>
             </h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Мы не ждем, пока вы заболеете. Мы находим уязвимости на клеточном уровне и возвращаем организму заводские настройки.</p>
+            <p class="text-slate-400 text-sm md:text-lg max-w-2xl mx-auto">Мы не ждем, пока вы заболеете. Мы находим уязвимости на клеточном уровне и возвращаем организму заводские настройки.</p>
         </div>
 
-        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 px-6 pb-8 lg:grid lg:grid-cols-2 lg:overflow-visible lg:pb-0 lg:px-0 lg:gap-12">
             
-            <div class="relative p-8 md:p-10 rounded-3xl border border-slate-800 overflow-hidden bg-cover bg-center shadow-xl group" style="background-image: url('problem-split.jpg');">
+            <div class="w-[85vw] md:w-[60vw] lg:w-auto shrink-0 snap-center relative p-6 md:p-10 rounded-3xl border border-slate-800 overflow-hidden bg-cover bg-center shadow-xl" style="background-image: url('problem-split.jpg');">
                 <div class="absolute inset-0 bg-slate-950/85 z-0"></div>
-                
                 <div class="relative z-10 space-y-8">
-                    <h3 class="text-2xl font-bold uppercase text-slate-300 font-display flex items-center gap-3">
+                    <h3 class="text-xl md:text-2xl font-bold uppercase text-slate-300 font-display flex items-center gap-3">
                         <span class="material-symbols-outlined text-slate-500">local_hospital</span>
                         Обычная клиника
                     </h3>
-                    
                     <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">healing</span>
-                            <div>
-                                <h4 class="text-slate-200 font-bold mb-1">Лечение симптомов</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed">Вам выписывают таблетки от головной боли, не выясняя, что причина кроется в кишечнике или дефиците кислорода.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">group_off</span>
-                            <div>
-                                <h4 class="text-slate-200 font-bold mb-1">Разрозненные врачи</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed">Эндокринолог не общается с кардиологом. Никто не сводит картину вашего здоровья воедино.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">rule</span>
-                            <div>
-                                <h4 class="text-slate-200 font-bold mb-1">Широкие «нормы»</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed">По анализам вы «в норме», хотя сил уже нет. Лабораторный референс показывает отсутствие критической болезни, а не здоровье.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">hourglass_empty</span>
-                            <div>
-                                <h4 class="text-slate-200 font-bold mb-1">Потеря времени</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed">Недели ожиданий записей, очереди в кабинеты и постоянные пересдачи анализов в разных местах.</p>
-                            </div>
-                        </li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">healing</span><div><h4 class="text-slate-200 font-bold mb-1">Лечение симптомов</h4><p class="text-slate-400 text-xs md:text-sm leading-relaxed">Вам выписывают таблетки от головной боли, не выясняя, что причина кроется в кишечнике или дефиците кислорода.</p></div></li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">group_off</span><div><h4 class="text-slate-200 font-bold mb-1">Разрозненные врачи</h4><p class="text-slate-400 text-xs md:text-sm leading-relaxed">Эндокринолог не общается с кардиологом. Никто не сводит картину вашего здоровья воедино.</p></div></li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-red-500/80 bg-red-500/10 p-2 rounded-xl text-xl flex-shrink-0">rule</span><div><h4 class="text-slate-200 font-bold mb-1">Широкие «нормы»</h4><p class="text-slate-400 text-xs md:text-sm leading-relaxed">По анализам вы «в норме», хотя сил уже нет. Лабораторный референс показывает отсутствие критической болезни, а не здоровье.</p></div></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="relative p-8 md:p-10 rounded-3xl border border-primary/30 overflow-hidden bg-cover bg-center glass neo-glow shadow-2xl transition-transform hover:-translate-y-1" style="background-image: url('good.png');">
+            <div class="w-[85vw] md:w-[60vw] lg:w-auto shrink-0 snap-center relative p-6 md:p-10 rounded-3xl border border-primary/30 overflow-hidden bg-cover bg-center glass neo-glow shadow-2xl transition-transform lg:hover:-translate-y-1" style="background-image: url('checkup.jpg');">
                 <div class="absolute inset-0 bg-cyan-950/75 z-0"></div>
-                
                 <div class="relative z-10 space-y-8">
-                    <h3 class="text-2xl font-black uppercase text-white font-display flex items-center gap-3 drop-shadow-md">
+                    <h3 class="text-xl md:text-2xl font-black uppercase text-white font-display flex items-center gap-3 drop-shadow-md">
                         <span class="material-symbols-outlined text-primary drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">all_inclusive</span>
                         Система Здоровье 360
                     </h3>
-                    
                     <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">radar</span>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Поиск первопричины</h4>
-                                <p class="text-slate-100 text-sm leading-relaxed">Находим корень проблемы на клеточном уровне: устраняем воспаления, окислительный стресс и скрытые дефициты.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">hub</span>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Единый консилиум</h4>
-                                <p class="text-slate-100 text-sm leading-relaxed">Врач-куратор сводит все ваши 80+ показателей в единую систему, понимая, как один орган влияет на другой.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">vital_signs</span>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Оптимальные коридоры</h4>
-                                <p class="text-slate-100 text-sm leading-relaxed">Мы ориентируемся на показатели <span class="text-primary font-bold">здорового и энергичного</span> человека, а не среднестатистического.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">bolt</span>
-                            <div>
-                                <h4 class="text-white font-bold mb-1">Всё за 1 день</h4>
-                                <p class="text-slate-100 text-sm leading-relaxed">Сдача всех анализов и биометрии за один визит. Фиксированная цена без скрытых доплат.</p>
-                            </div>
-                        </li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">radar</span><div><h4 class="text-white font-bold mb-1">Поиск первопричины</h4><p class="text-slate-100 text-xs md:text-sm leading-relaxed">Находим корень проблемы на клеточном уровне: устраняем воспаления, окислительный стресс и скрытые дефициты.</p></div></li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">hub</span><div><h4 class="text-white font-bold mb-1">Единый консилиум</h4><p class="text-slate-100 text-xs md:text-sm leading-relaxed">Врач-куратор сводит все ваши 80+ показателей в единую систему, понимая, как один орган влияет на другой.</p></div></li>
+                        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 border border-primary/20 p-2 rounded-xl text-xl flex-shrink-0 shadow-[0_0_15px_rgba(34,211,238,0.2)]">vital_signs</span><div><h4 class="text-white font-bold mb-1">Оптимальные коридоры</h4><p class="text-slate-100 text-xs md:text-sm leading-relaxed">Мы ориентируемся на показатели <span class="text-primary font-bold">здорового и энергичного</span> человека, а не среднестатистического.</p></div></li>
                     </ul>
                 </div>
             </div>
+            
+            <div class="w-full flex justify-center mt-2 lg:hidden col-span-full">
+                <span class="text-[10px] text-slate-500 uppercase font-bold flex items-center gap-1 animate-pulse"><span class="material-symbols-outlined text-sm">swipe</span> Листайте вбок</span>
+            </div>
 
         </div>
+    </div>
+</section>
+
+<section class="py-24 bg-surface-container-high" id="how">
+    <div class="max-w-7xl mx-auto px-0 md:px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center uppercase mb-16 tracking-tighter text-white px-6">Этапы интеграции</h2>
+        
+        <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-6 px-6 pb-8 md:grid md:grid-cols-4 md:overflow-visible md:pb-0 md:px-0">
+            <div class="w-[75vw] md:w-auto shrink-0 snap-center text-center group bg-surface/30 md:bg-transparent p-6 md:p-0 rounded-2xl border border-white/5 md:border-none">
+                <div class="w-16 h-16 bg-primary/10 border border-primary/20 shadow-sm flex items-center justify-center mx-auto mb-6 rounded-2xl group-hover:bg-primary group-hover:text-surface transition-all duration-500 text-primary"><span class="material-symbols-outlined text-3xl">biotech</span></div>
+                <h5 class="font-bold text-lg mb-2 text-white">01. Диагностика</h5><p class="text-sm text-slate-400 font-medium">Сбор биометрии и анализов по расширенному протоколу.</p>
+            </div>
+            <div class="w-[75vw] md:w-auto shrink-0 snap-center text-center group bg-surface/30 md:bg-transparent p-6 md:p-0 rounded-2xl border border-white/5 md:border-none">
+                <div class="w-16 h-16 bg-primary/10 border border-primary/20 shadow-sm flex items-center justify-center mx-auto mb-6 rounded-2xl group-hover:bg-primary group-hover:text-surface transition-all duration-500 text-primary"><span class="material-symbols-outlined text-3xl">insights</span></div>
+                <h5 class="font-bold text-lg mb-2 text-white">02. Анализ</h5><p class="text-sm text-slate-400 font-medium">Нейронный синтез данных и выявление паттернов старения.</p>
+            </div>
+            <div class="w-[75vw] md:w-auto shrink-0 snap-center text-center group bg-surface/30 md:bg-transparent p-6 md:p-0 rounded-2xl border border-white/5 md:border-none">
+                <div class="w-16 h-16 bg-primary/10 border border-primary/20 shadow-sm flex items-center justify-center mx-auto mb-6 rounded-2xl group-hover:bg-primary group-hover:text-surface transition-all duration-500 text-primary"><span class="material-symbols-outlined text-3xl">health_and_safety</span></div>
+                <h5 class="font-bold text-lg mb-2 text-white">03. Консультация</h5><p class="text-sm text-slate-400 font-medium">Обсуждение персональной стратегии с врачом-экспертом.</p>
+            </div>
+            <div class="w-[75vw] md:w-auto shrink-0 snap-center text-center group bg-surface/30 md:bg-transparent p-6 md:p-0 rounded-2xl border border-white/5 md:border-none">
+                <div class="w-16 h-16 bg-primary/10 border border-primary/20 shadow-sm flex items-center justify-center mx-auto mb-6 rounded-2xl group-hover:bg-primary group-hover:text-surface transition-all duration-500 text-primary"><span class="material-symbols-outlined text-3xl">monitoring</span></div>
+                <h5 class="font-bold text-lg mb-2 text-white">04. Сопровождение</h5><p class="text-sm text-slate-400 font-medium">Ежемесячная коррекция курса на основе новых данных.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-surface" id="pricing">
+    <div class="max-w-7xl mx-auto px-0 md:px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center uppercase mb-16 tracking-tighter text-white px-6">Тарифные планы</h2>
+        
+        <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-6 px-6 pb-12 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 md:px-0 lg:gap-8">
+            
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center p-8 glass rounded-2xl flex flex-col hover:border-slate-700 transition-colors shadow-lg">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">УРОВЕНЬ 01</div><h3 class="text-3xl font-black mb-2 uppercase font-display text-white">Start</h3><div class="text-3xl md:text-4xl font-bold text-primary mb-8 tracking-tighter">19,900₽</div>
+                <ul class="space-y-4 mb-12 flex-grow text-slate-400 text-sm font-medium">
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> 35 ключевых показателей</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Интерактивный аватар</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Отчет в PDF формате</li>
+                </ul>
+                <button onclick="openModal()" class="w-full py-4 border border-slate-700 text-white font-bold uppercase text-xs tracking-widest hover:border-primary transition-all rounded-sm mt-auto">Выбрать</button>
+            </div>
+            
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center p-8 glass rounded-2xl flex flex-col border-2 border-primary relative neo-glow overflow-hidden transform md:-translate-y-4 shadow-2xl">
+                <div class="absolute -right-12 top-6 bg-primary text-surface text-[10px] font-bold px-12 py-1 rotate-45 uppercase tracking-widest shadow-md">ХИТ</div>
+                <div class="text-[10px] font-bold text-primary uppercase tracking-widest mb-4">УРОВЕНЬ 02</div><h3 class="text-3xl font-black mb-2 text-primary uppercase font-display">Pro</h3><div class="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tighter">49,900₽</div>
+                <ul class="space-y-4 mb-12 flex-grow text-slate-200 text-sm font-medium">
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> 85 показателей (в т.ч. гормоны)</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Нейронный анализ связей</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> 2-х часовая консультация врача</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> План добавок на 3 месяца</li>
+                </ul>
+                <button onclick="openModal()" class="w-full py-4 bg-primary text-surface font-black uppercase text-xs tracking-widest hover:brightness-110 transition-all rounded-sm shadow-md mt-auto">Купить PRO</button>
+            </div>
+            
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center p-8 glass rounded-2xl flex flex-col hover:border-slate-700 transition-colors shadow-lg">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">УРОВЕНЬ 03</div><h3 class="text-3xl font-black mb-2 uppercase font-display text-white">Ultimate</h3><div class="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tighter">129,900₽</div>
+                <ul class="space-y-4 mb-12 flex-grow text-slate-400 text-sm font-medium">
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Генетический паспорт здоровья</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Ежеквартальный мониторинг</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Прямой доступ к главному врачу</li>
+                    <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> 24/7 консьерж-сопровождение</li>
+                </ul>
+                <button onclick="openModal()" class="w-full py-4 border border-slate-700 text-white font-bold uppercase text-xs tracking-widest hover:border-primary transition-all rounded-sm mt-auto">Узнать больше</button>
+            </div>
+        </div>
+        
     </div>
 </section>
 
