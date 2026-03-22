@@ -715,8 +715,10 @@
         }
     });
 
+    // --- ИНТЕРАКТИВНАЯ МОДЕЛЬ (АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ И ПК) ---
     organs.forEach(organ => {
-        organ.addEventListener('mouseenter', (e) => {
+        // Функция показа подсказки (общая для мыши и касаний)
+        const showTooltip = (e) => {
             const data = organ.dataset;
             tTitle.innerText = data.name;
             tTests.innerText = `Анализы: ${data.tests}`;
@@ -748,19 +750,29 @@
                 tExtra.classList.add('hidden');
             }
 
-            tooltip.classList.remove('hidden');
+            // Сбрасываем цвета всех органов и подсвечиваем текущий
+            organs.forEach(o => o.querySelector('.organ-icon').style.fill = isAfter ? "#22d3ee" : "#475569");
             organ.querySelector('.organ-icon').style.fill = "#ffffff"; 
-        });
+            tooltip.classList.remove('hidden');
+            
+            positionTooltip(e);
+        };
 
-        organ.addEventListener('mouseleave', () => {
+        // Функция скрытия подсказки
+        const hideTooltip = () => {
             tooltip.classList.add('hidden');
             organ.querySelector('.organ-icon').style.fill = isAfter ? "#22d3ee" : "#475569";
             dynamicLines.innerHTML = '';
-        });
+        };
 
-        organ.addEventListener('mousemove', (e) => {
-            const x = e.clientX + 20;
-            const y = e.clientY + 20;
+        // Функция позиционирования подсказки рядом с пальцем/мышкой
+        const positionTooltip = (e) => {
+            // Если это касание пальцем, берем координаты первого касания
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const x = clientX + 20;
+            const y = clientY + 20;
             const width = tooltip.offsetWidth;
             const height = tooltip.offsetHeight;
             const winWidth = window.innerWidth;
@@ -769,12 +781,34 @@
             let left = x;
             let top = y;
 
-            if (x + width > winWidth) left = e.clientX - width - 20;
-            if (y + height > winHeight) top = e.clientY - height - 20;
+            // Чтобы подсказка не уезжала за края экрана на мобилках
+            if (x + width > winWidth) left = clientX - width - 20;
+            if (y + height > winHeight) top = clientY - height - 20;
+            if (left < 0) left = 10;
 
             tooltip.style.left = `${left}px`;
             tooltip.style.top = `${top}px`;
-        });
+        };
+
+        // События для ПК (мышка)
+        organ.addEventListener('mouseenter', showTooltip);
+        organ.addEventListener('mouseleave', hideTooltip);
+        organ.addEventListener('mousemove', positionTooltip);
+
+        // События для ТЕЛЕФОНОВ (касания)
+        organ.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Отключаем стандартное поведение экрана
+            showTooltip(e);
+        }, { passive: false });
+    });
+
+    // Скрытие подсказки на телефоне при клике по пустому месту
+    document.addEventListener('touchstart', (e) => {
+        if (!e.target.closest('.organ') && !e.target.closest('#tooltip')) {
+            tooltip.classList.add('hidden');
+            organs.forEach(o => o.querySelector('.organ-icon').style.fill = isAfter ? "#22d3ee" : "#475569");
+            dynamicLines.innerHTML = '';
+        }
     });
 </script>
 </body>
